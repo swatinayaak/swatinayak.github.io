@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swati Nayak</title>
+<meta name="description" content="Swati Nayak — PhD Student in Quant at UMass Amherst. Research in computational finance, fixed income derivatives, structured credit, and financial machine learning.">
+<meta name="keywords" content="Swati Nayak, PhD Finance, UMass Amherst, fixed income, derivatives, machine learning, quantitative finance, swaptions, MBS, AI">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #f8f6f1;
+    --text: #1b1b1b;
+    --text-mid: #3d3d3d;
+    --text-soft: #6b6b6b;
+    --text-faint: #9a9a9a;
+    --accent: #6b4c3b;
+    --accent-hover: #8a6550;
+    --gold: #b8965a;
+    --border: #e4ddd3;
+    --border-light: #ece7df;
+    --serif: 'Libre Baskerville', Georgia, serif;
+    --sans: 'Manrope', -apple-system, sans-serif;
+    --max-width: 1060px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-weight: 400;
+    font-size: 15px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a { color: var(--accent); text-decoration: none; transition: color 0.3s; }
+  a:hover { color: var(--accent-hover); }
+
+  /* === HEADER (ALWAYS VISIBLE) === */
+  header {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    width: 100%;
+    padding: 2.5rem 3rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header .name-block { cursor: pointer; }
+
+  header .name-block .name {
+    font-family: var(--serif);
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  header .name-block .tagline {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 0.2rem;
+  }
+
+  header nav { display: flex; gap: 0.15rem; }
+
+  header nav a {
+    color: var(--text-soft);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.1rem;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  header nav a:hover { color: var(--text); background: rgba(107, 76, 59, 0.04); text-decoration: none; }
+  header nav a.active { color: var(--accent); background: rgba(107, 76, 59, 0.06); }
+
+  .header-line {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 3rem;
+  }
+  .header-line hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), var(--gold), var(--border));
+    opacity: 0.5;
+  }
+
+  /* === CONTENT AREA === */
+  .content {
+    flex: 1;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 3rem;
+    min-height: 60vh;
+  }
+
+  .page { display: none; }
+  .page.active { display: block; animation: softIn 0.4s ease; }
+
+  @keyframes softIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+
+  /* === HOME === */
+  .home {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 4.5rem;
+    padding: 3.5rem 0 4rem;
+    align-items: start;
+  }
+
+  .home-photo { position: relative; }
+
+  .home-photo img {
+    width: 100%;
+    border-radius: 5px;
+    display: block;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .home-photo::before {
+    content: '';
+    position: absolute;
+    top: 10px; left: 10px; right: -10px; bottom: -10px;
+    border: 1px solid var(--gold);
+    border-radius: 5px;
+    opacity: 0.3;
+    z-index: -1;
+  }
+
+  .home-content { padding-top: 0.3rem; }
+
+  .home-content h1 {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .home-content .role {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2.2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    line-height: 1.8;
+  }
+
+  .role-line { width: 30px; height: 1px; background: var(--gold); flex-shrink: 0; margin-top: 0.55em; }
+
+  .home-content .bio {
+    font-size: 0.97rem;
+    color: var(--text-mid);
+    line-height: 1.95;
+  }
+  .home-content .bio p + p { margin-top: 1.15rem; }
+  .home-content .bio .italic {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.02em;
+    color: var(--accent);
+  }
+
+  .divider-thin {
+    width: 40px; height: 1px;
+    background: var(--gold);
+    margin: 2.2rem 0;
+    opacity: 0.6;
+  }
+
+  .info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    font-size: 0.88rem;
+    color: var(--text-mid);
+  }
+  .info-row .lbl {
+    display: inline-block; width: 100px;
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  .cta-row {
+    margin-top: 2rem;
+    display: flex;
+    gap: 0.7rem;
+  }
+
+  .cta-btn {
+    padding: 0.55rem 1.5rem;
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.04em;
+    border: 1.5px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .cta-btn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .cta-btn.filled { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .cta-btn.filled:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: #fff; }
+
+  /* === INNER PAGES === */
+  .inner {
+    max-width: 660px;
+    padding: 3.5rem 0 4rem;
+  }
+
+  .inner h2 {
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.02em;
+  }
+
+  .inner .page-desc {
+    font-size: 0.9rem;
+    color: var(--text-soft);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  /* Research & Conferences */
+  .r-item {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .r-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .r-item .r-tag {
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.6rem;
+  }
+
+  .r-item h3 {
+    font-family: var(--serif);
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--text); margin-bottom: 0.5rem;
+  }
+
+  .r-item p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.8; }
+
+  /* Publications */
+  .pub-empty {
+    padding: 2.5rem;
+    border: 1px dashed var(--border);
+    border-radius: 5px;
+    text-align: center;
+    color: var(--text-faint);
+    font-size: 0.92rem;
+    line-height: 1.9;
+  }
+
+  /* CV */
+  .cv-label {
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem; margin-top: 2.5rem;
+  }
+  .cv-label:first-child { margin-top: 0; }
+
+  .cv-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .cv-row .yr { color: var(--text-faint); font-size: 0.82rem; font-weight: 500; padding-top: 0.1rem; }
+  .cv-row .pos { font-weight: 600; color: var(--text); }
+  .cv-row .place { color: var(--text-mid); font-size: 0.88rem; }
+
+  .cv-dl {
+    display: inline-block;
+    margin-top: 2.5rem;
+    padding: 0.6rem 1.8rem;
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.04em;
+    border: 1.5px solid var(--accent);
+    border-radius: 3px;
+    color: var(--accent);
+    transition: all 0.3s;
+  }
+  .cv-dl:hover { background: var(--accent); color: #fff; text-decoration: none; }
+
+  /* Contact */
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    line-height: 2;
+  }
+  .contact-list strong {
+    color: var(--text); font-weight: 600;
+    min-width: 130px; display: inline-block;
+    font-size: 0.85rem;
+  }
+
+  /* === FOOTER === */
+  footer {
+    max-width: var(--max-width);
+    margin: auto auto 0;
+    width: 100%;
+    padding: 2.5rem 3rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    border-top: 1px solid var(--border-light);
+    letter-spacing: 0.04em;
+  }
+
+  /* === MOBILE === */
+  @media (max-width: 768px) {
+    header { padding: 1.8rem 1.5rem 1.2rem; flex-direction: column; gap: 1rem; align-items: flex-start; }
+    header nav { flex-wrap: wrap; gap: 0.1rem; }
+    header nav a { padding: 0.4rem 0.7rem; font-size: 0.72rem; }
+    .header-line { padding: 0 1.5rem; }
+
+    .content { padding: 0 1.5rem; }
+
+    .home {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      padding: 2.5rem 0 3rem;
+    }
+    .home-photo { max-width: 260px; }
+    .home-photo::before { display: none; }
+    .home-content h1 { font-size: 1.9rem; }
+    .home-content .role { flex-wrap: wrap; }
+
+    .info-row .lbl { width: auto; display: block; margin-bottom: -0.3rem; }
+    .cta-row { flex-wrap: wrap; }
+
+    .inner { padding: 2.5rem 0 3rem; }
+    .cv-row { grid-template-columns: 1fr; gap: 0.2rem; }
+
+    footer { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER: ALWAYS VISIBLE -->
+<header>
+  <div class="name-block" onclick="showPage('home')">
+    <div class="name">Swati Nayak</div>
+    <div class="tagline">PhD Student · Quantitative Finance</div>
+  </div>
+  <nav>
+    <a onclick="showPage('home')" id="nav-home" class="active">Home</a>
+    <a onclick="showPage('research')" id="nav-research">Research</a>
+    <a onclick="showPage('publications')" id="nav-publications">Publications</a>
+    <a onclick="showPage('conferences')" id="nav-conferences">Conferences</a>
+    <a onclick="showPage('cv')" id="nav-cv">CV</a>
+    <a onclick="showPage('contact')" id="nav-contact">Contact</a>
+  </nav>
+</header>
+
+<div class="header-line"><hr></div>
+
+<!-- CONTENT: SWITCHES COMPLETELY -->
+<div class="content">
+
+  <!-- HOME -->
+  <div id="page-home" class="page active">
+    <div class="home">
+      <div class="home-photo">
+        <img src="photo.jpg" alt="Swati Nayak">
+      </div>
+      <div class="home-content">
+        <h1>Swati Nayak</h1>
+        <div class="role"><span class="role-line"></span> <span>PhD in Quant @ UMass Amherst<br>MS in Fin Mathematics @ UC San Diego</span></div>
+
+        <div class="bio">
+          <p>I'm a PhD student in Quant at the University of Massachusetts Amherst. Before coming to UMass, I earned my MS in Financial Mathematics from UC San Diego. I spent a few years working in quantitative finance and analytical consulting — experiences that shaped how I think about problems and keep my research grounded in the real world.</p>
+
+          <p>My research sits at the intersection of computational finance and statistical learning, specifically in interest rate derivative pricing, structured credit modelling, and the application of stochastic methods and deep learning to fixed-income markets. I work across quantitative modelling, high-dimensional inference, and applied AI, with a focus on building frameworks that bridge financial theory with modern computational tools.</p>
+
+          <p><span class="italic">I care about research that doesn't just sit in journals; I want it to matter.</span> Whether it's a conversation about markets, models, or the messy space where math meets money, I'm always up for it. Let's connect :)</p>
+        </div>
+
+        <div class="divider-thin"></div>
+
+        <div class="info-row">
+          <div><span class="lbl">Email</span> <a href="mailto:swatinayak@umass.edu">swatinayak@umass.edu</a> · <a href="mailto:swnayak@ucsd.edu">swnayak@ucsd.edu</a></div>
+          <div><span class="lbl">LinkedIn</span> <a href="https://www.linkedin.com/in/swatinayaak/" target="_blank">in/swatinayaak</a></div>
+          <div><span class="lbl">Scholar</span> <a href="https://scholar.google.com/citations?user=MXVssvIAAAAJ&hl=en&authuser=1" target="_blank">Google Scholar</a></div>
+        </div>
+
+        <div class="cta-row">
+          <a class="cta-btn filled" onclick="showPage('research')">My Research</a>
+          <a class="cta-btn" onclick="showPage('cv')">View CV</a>
+          <a class="cta-btn" href="https://scholar.google.com/citations?user=MXVssvIAAAAJ&hl=en&authuser=1" target="_blank">Scholar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESEARCH -->
+  <div id="page-research" class="page">
+    <div class="inner">
+      <h2>Research</h2>
+      <p class="page-desc">My work focuses on computational methods for pricing and risk in fixed-income markets, with applications of machine learning and AI.</p>
+
+      <div class="r-item">
+        <div class="r-tag">Interest Rate Derivatives</div>
+        <h3>Swaption Pricing &amp; Risk Modeling</h3>
+        <p>Pricing and risk modeling of swaptions and other interest rate products using stochastic calculus and computational methods. Focused on improving accuracy and efficiency in derivative valuation.</p>
+      </div>
+
+      <div class="r-item">
+        <div class="r-tag">Structured Credit</div>
+        <h3>Mortgage-Backed Securities</h3>
+        <p>Modeling MBS and structured products — prepayment behavior, credit risk, and the dynamics underneath securitized markets. Exploring how computational tools can improve risk assessment in structured finance.</p>
+      </div>
+
+      <div class="r-item">
+        <div class="r-tag">Financial Machine Learning</div>
+        <h3>Deep Learning for Fixed Income</h3>
+        <p>Applying deep learning, high-dimensional inference, and AI to problems in pricing, risk quantification, and decision-making in financial markets.</p>
+      </div>
+
+      <div class="r-item">
+        <div class="r-tag">Computational Finance</div>
+        <h3>Bridging Theory &amp; Computation</h3>
+        <p>Monte Carlo simulation, neural network approximators, and optimization under uncertainty — building the next generation of quantitative frameworks that connect classical theory with modern tools.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PUBLICATIONS -->
+  <div id="page-publications" class="page">
+    <div class="inner">
+      <h2>Publications</h2>
+      <p class="page-desc">Working papers and published research.</p>
+      <div class="pub-empty">
+        Publications coming soon.<br>
+        Visit my <a href="https://scholar.google.com/citations?user=MXVssvIAAAAJ&hl=en&authuser=1" target="_blank">Google Scholar</a> for updates.
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFERENCES -->
+  <div id="page-conferences" class="page">
+    <div class="inner">
+      <h2>Conferences</h2>
+
+      <div class="r-item" style="margin-bottom:1.5rem; padding-bottom:1.5rem;">
+        <div class="r-tag">2026</div>
+        <h3 style="font-size:1.05rem;">UMass Amherst Finance Conference</h3>
+        <p style="font-size:0.85rem;">University of Massachusetts Amherst</p>
+      </div>
+
+      <div class="r-item" style="margin-bottom:1.5rem; padding-bottom:1.5rem;">
+        <div class="r-tag">2025</div>
+        <h3 style="font-size:1.05rem;">UMass Amherst Finance Conference</h3>
+        <p style="font-size:0.85rem;">University of Massachusetts Amherst</p>
+      </div>
+
+      <div class="r-item" style="margin-bottom:1.5rem; padding-bottom:1.5rem;">
+        <div class="r-tag">2025</div>
+        <h3 style="font-size:1.05rem;">NYU Stern Market Microstructure Conference</h3>
+        <p style="font-size:0.85rem;">New York University, Stern School of Business</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CV -->
+  <div id="page-cv" class="page">
+    <div class="inner">
+      <h2>Curriculum Vitae</h2>
+
+      <div class="cv-label">Education</div>
+
+      <div class="cv-row">
+        <div class="yr">2024 — Present</div>
+        <div><div class="pos">University of Massachusetts Amherst</div><div class="place">PhD, Quant Finance</div></div>
+      </div>
+
+      <div class="cv-row">
+        <div class="yr">2022 — 2023</div>
+        <div><div class="pos">University of California, San Diego</div><div class="place">MS, Financial Mathematics<br><em style="color:var(--text-soft);">Track: Data Science and Machine Learning</em></div></div>
+      </div>
+
+      <div class="cv-row">
+        <div class="yr">2020 — 2022</div>
+        <div><div class="pos">NMIMS, Mumbai</div><div class="place">PGDM, Information Technology &amp; Systems<br><em style="color:var(--text-soft);">Minor: Finance, Mathematics &amp; Statistics</em></div></div>
+      </div>
+
+      <div class="cv-label">Experience</div>
+
+      <div class="cv-row">
+        <div class="yr">2023 — 2024</div>
+        <div><div class="pos">Senior Consultant</div><div class="place">RedHill Business Analytics, Costa Mesa, USA</div></div>
+      </div>
+
+      <div class="cv-row">
+        <div class="yr">2023 — 2024</div>
+        <div><div class="pos">Financial Engineer, Research</div><div class="place">UC San Diego, San Diego, USA</div></div>
+      </div>
+
+      <div class="cv-row">
+        <div class="yr">2022 — 2023</div>
+        <div><div class="pos">Investment Research</div><div class="place">Brandes Center, UC San Diego, USA</div></div>
+      </div>
+
+      <div class="cv-row">
+        <div class="yr">2023</div>
+        <div><div class="pos">Analyst, Quant Finance</div><div class="place">Heraeus Precious Metals, Los Angeles, USA</div></div>
+      </div>
+
+      <div class="cv-row">
+        <div class="yr">2023</div>
+        <div><div class="pos">Research</div><div class="place">Moody's Analytics, San Francisco, USA</div></div>
+      </div>
+
+      <div class="cv-row">
+        <div class="yr">2020 — 2022</div>
+        <div><div class="pos">Senior Analyst, Finance</div><div class="place">JSY Infra Management Services, Mumbai, IN</div></div>
+      </div>
+
+      <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border-light); font-size:0.95rem; color:var(--text-mid);">
+        <span style="font-family:var(--serif); font-style:italic; color:var(--accent);">Want the full CV?</span> Reach out to me at <a href="mailto:swatinayak@umass.edu" style="font-weight:600;">swatinayak@umass.edu</a> or <a href="mailto:swnayak@ucsd.edu" style="font-weight:600;">swnayak@ucsd.edu</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="page-contact" class="page">
+    <div class="inner">
+      <h2>Contact</h2>
+      <p class="page-desc">I'm always happy to connect — whether it's about research, opportunities, or a conversation over coffee.</p>
+      <div class="contact-list">
+        <div><strong>Email</strong> <a href="mailto:swatinayak@umass.edu">swatinayak@umass.edu</a> · <a href="mailto:swnayak@ucsd.edu">swnayak@ucsd.edu</a></div>
+        <div><strong>LinkedIn</strong> <a href="https://www.linkedin.com/in/swatinayaak/" target="_blank">linkedin.com/in/swatinayaak</a></div>
+        <div><strong>Google Scholar</strong> <a href="https://scholar.google.com/citations?user=MXVssvIAAAAJ&hl=en&authuser=1" target="_blank">Scholar Profile</a></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>&copy; 2026 Swati Nayak &middot; University of Massachusetts Amherst</footer>
+
+<script>
+  function showPage(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('header nav a').forEach(a => a.classList.remove('active'));
+    document.getElementById('page-' + page).classList.add('active');
+    const nav = document.getElementById('nav-' + page);
+    if (nav) nav.classList.add('active');
+    window.scrollTo({ top: 0 });
+  }
+</script>
+</body>
+</html>
